@@ -1,18 +1,32 @@
 // Будем использовать Function Declaration во время написания проекта
 
 
-//Функция, возвращающая случайное целое число из переданного диапазона включительно. Пример использования функции:
-//имя_функции(от, до); Результат: целое число из диапазона "от...до"
 
-alert(getRandom(4, 18));
+alert(getRandom(4,8));
+alert(getRandomWithFloat(4,8,3));
 
+//Функция, возвращающая случайное целое число из переданного диапазона включительно
 
 function getRandom(min, max) {
-    if (min < max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+  if (min < max) {
+    return Math.round(Math.random() * (max - min + 1)) + min;
+  }
 
-    else {
-        alert("Ведите два разных числа в порядке возрастания")
-    }
-};
+  else {
+    alert('Ведите два разных числа в порядке возрастания');
+  }
+}
+//Подсмотрено тут https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random и немного изменено
+
+
+//Функция, возвращающая случайное число с плавающей точкой из переданного диапазона включительно
+
+function getRandomWithFloat (min, max, point) {
+  if (min < max) {
+    let randomNumber = (Math.random() * (max - min + 1)) + min;
+    return randomNumber.toFixed(point);
+  }
+  else {
+    alert('Ведите два разных числа в порядке возрастания');
+  }
+}
