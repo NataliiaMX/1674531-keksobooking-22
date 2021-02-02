@@ -9,11 +9,10 @@ alert(getRandomWithFloat(4,8,3));
 
 function getRandom(min, max) {
   if (min < max) {
-    return Math.round(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-
   else {
-    alert('Ведите два разных числа в порядке возрастания');
+    alert('Введите два разных числа в порядке возрастания');
   }
 }
 //Подсмотрено тут https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random и немного изменено
@@ -27,6 +26,6 @@ function getRandomWithFloat (min, max, point) {
     return randomNumber.toFixed(point);
   }
   else {
-    alert('Ведите два разных числа в порядке возрастания');
+    alert('Введите два разных числа в порядке возрастания');
   }
 }
