@@ -11,22 +11,20 @@ const offerTemplate = {
     'http://o0.github.io/assets/images/tokyo/hotel3.jpg'],
 };
 
-/*global _*/
-
 const LISTINGS = [];
  
 for (let i = 0; i < 10; i++){
   let listing = {
     author: {
-      avatar: 'img/avatars/user' + 0 + _.random(1, 8) +'.png',
+      avatar: 'img/avatars/user' + 0 + getRandom(1, 8) +'.png',
     },
     offer: {
       title: 'Your best offer in Tokyo',
-      adress: 'X:'+ _.random(1, 400)+ ', ' + 'y:' + _.random(1, 400),
-      price: _.random(1, 10000),
-      tyte: getRandomArrayElement(offerTemplate.type),
-      rooms: _.random(1, 15),
-      guests: _.random(1, 20),
+      address: 'X:'+ getRandom(1, 400)+ ', ' + 'y:' + getRandom(1, 400),
+      price: getRandom(1, 10000),
+      type: getRandomArrayElement(offerTemplate.type),
+      rooms: getRandom(1, 15),
+      guests: getRandom(1, 20),
       checkin: getRandomArrayElement(offerTemplate.checkin),
       checkout: getRandomArrayElement(offerTemplate.checkout),
       features: makeNewRandomSubset(offerTemplate.features),
@@ -34,8 +32,8 @@ for (let i = 0; i < 10; i++){
       photos: makeNewRandomSubset(offerTemplate.photos),
     },
     location: {
-      x: getRandomWithFloat(35.65000, 35.70000, _.random(1, 5)),
-      y: getRandomWithFloat(139.70000, 139.80000, _.random(1, 5)),
+      x: getRandomWithFloat(35.65000, 35.70000, getRandom(1, 5)),
+      y: getRandomWithFloat(139.70000, 139.80000, getRandom(1, 5)),
     }, 
   }
   LISTINGS.push(listing);
@@ -44,17 +42,24 @@ for (let i = 0; i < 10; i++){
 
 //functions that I need
 
-//for getting ramdom array element
+//for getting random number
+function getRandom(min, max) {
+  if (min < max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+}
+
+//for getting random array element
 function getRandomArrayElement(elements){
-  return elements[_.random(0, elements.length - 1)];
+  return elements[getRandom(0, elements.length - 1)];
 }
 
 //for offer.features
 function makeNewRandomSubset (array){
-  let length = _.random(1, array.length)
+  let length = getRandom(1, array.length)
   let newArray = [];
   while(newArray.length < length) {
-    let newIndex = _.random(0, array.length - 1);   
+    let newIndex = getRandom(0, array.length - 1);   
     let currentElement = array[newIndex];
     if (!newArray.includes(currentElement)){
       newArray.push(currentElement);
