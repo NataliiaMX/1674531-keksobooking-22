@@ -1,31 +1,77 @@
 // Будем использовать Function Declaration во время написания проекта
 
+//templates
+const OFFER_TEMPLATE = {
+  features: ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'],
+  type: ['palace', 'flat', 'house', 'bungalow'],
+  checkin: ['12:00', '13:00', '14:00'],
+  checkout: ['12:00', '13:00', '14:00'],
+  photos: ['http://o0.github.io/assets/images/tokyo/hotel1.jpg',                                           
+    'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
+    'http://o0.github.io/assets/images/tokyo/hotel3.jpg'],
+};
+
+const listings = [];
+ 
+for (let i = 0; i < 10; i++){
+  const listing = {
+    author: {
+      avatar: 'img/avatars/user' + 0 + getRandom(1, 8) +'.png',
+    },
+    offer: {
+      title: 'Your best offer in Tokyo',
+      address: 'X:'+ getRandom(1, 400)+ ', ' + 'y:' + getRandom(1, 400),
+      price: getRandom(1, 10000),
+      type: getRandomArrayElement(OFFER_TEMPLATE.type),
+      rooms: getRandom(1, 15),
+      guests: getRandom(1, 20),
+      checkin: getRandomArrayElement(OFFER_TEMPLATE.checkin),
+      checkout: getRandomArrayElement(OFFER_TEMPLATE.checkout),
+      features: makeNewRandomSubset(OFFER_TEMPLATE.features),
+      description: 'New spacious place, perfect for long and short stays',
+      photos: makeNewRandomSubset(OFFER_TEMPLATE.photos),
+    },
+    location: {
+      x: getRandomWithFloat(35.65000, 35.70000, getRandom(1, 5)),
+      y: getRandomWithFloat(139.70000, 139.80000, getRandom(1, 5)),
+    }, 
+  }
+  listings.push(listing);
+}
 
 
-alert(getRandom(4,8));
-alert(getRandomWithFloat(4,8,3));
+//functions that I need
 
-//Функция, возвращающая случайное целое число из переданного диапазона включительно
-
+//for getting random number
 function getRandom(min, max) {
   if (min < max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  else {
-    alert('Введите два разных числа в порядке возрастания');
-  }
 }
-//Подсмотрено тут https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random и немного изменено
 
+//for getting random array element
+function getRandomArrayElement(elements){
+  return elements[getRandom(0, elements.length - 1)];
+}
 
-//Функция, возвращающая случайное число с плавающей точкой из переданного диапазона включительно
+//for offer.features etc
+function makeNewRandomSubset (array){
+  let length = getRandom(1, array.length)
+  let newArray = [];
+  while(newArray.length < length) {
+    let newIndex = getRandom(0, array.length - 1);   
+    let currentElement = array[newIndex];
+    if (!newArray.includes(currentElement)){
+      newArray.push(currentElement);
+    }
+  }
+  return newArray;
+}
 
+//for getting random number with floating point
 function getRandomWithFloat (min, max, point) {
   if (min < max) {
     let randomNumber = (Math.random() * (max - min + 1)) + min;
     return randomNumber.toFixed(point);
-  }
-  else {
-    alert('Введите два разных числа в порядке возрастания');
   }
 }
