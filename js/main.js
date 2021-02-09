@@ -1,7 +1,7 @@
 // Будем использовать Function Declaration во время написания проекта
 
 //templates
-const offerTemplate = {
+const OFFER_TEMPLATE = {
   features: ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'],
   type: ['palace', 'flat', 'house', 'bungalow'],
   checkin: ['12:00', '13:00', '14:00'],
@@ -11,10 +11,10 @@ const offerTemplate = {
     'http://o0.github.io/assets/images/tokyo/hotel3.jpg'],
 };
 
-const LISTINGS = [];
+const listings = [];
  
 for (let i = 0; i < 10; i++){
-  let listing = {
+  const listing = {
     author: {
       avatar: 'img/avatars/user' + 0 + getRandom(1, 8) +'.png',
     },
@@ -22,21 +22,21 @@ for (let i = 0; i < 10; i++){
       title: 'Your best offer in Tokyo',
       address: 'X:'+ getRandom(1, 400)+ ', ' + 'y:' + getRandom(1, 400),
       price: getRandom(1, 10000),
-      type: getRandomArrayElement(offerTemplate.type),
+      type: getRandomArrayElement(OFFER_TEMPLATE.type),
       rooms: getRandom(1, 15),
       guests: getRandom(1, 20),
-      checkin: getRandomArrayElement(offerTemplate.checkin),
-      checkout: getRandomArrayElement(offerTemplate.checkout),
-      features: makeNewRandomSubset(offerTemplate.features),
+      checkin: getRandomArrayElement(OFFER_TEMPLATE.checkin),
+      checkout: getRandomArrayElement(OFFER_TEMPLATE.checkout),
+      features: makeNewRandomSubset(OFFER_TEMPLATE.features),
       description: 'New spacious place, perfect for long and short stays',
-      photos: makeNewRandomSubset(offerTemplate.photos),
+      photos: makeNewRandomSubset(OFFER_TEMPLATE.photos),
     },
     location: {
       x: getRandomWithFloat(35.65000, 35.70000, getRandom(1, 5)),
       y: getRandomWithFloat(139.70000, 139.80000, getRandom(1, 5)),
     }, 
   }
-  LISTINGS.push(listing);
+  listings.push(listing);
 }
 
 
@@ -54,7 +54,7 @@ function getRandomArrayElement(elements){
   return elements[getRandom(0, elements.length - 1)];
 }
 
-//for offer.features
+//for offer.features etc
 function makeNewRandomSubset (array){
   let length = getRandom(1, array.length)
   let newArray = [];
@@ -70,7 +70,7 @@ function makeNewRandomSubset (array){
 
 //for getting random number with floating point
 function getRandomWithFloat (min, max, point) {
-  if (min < max) {  
+  if (min < max) {
     let randomNumber = (Math.random() * (max - min + 1)) + min;
     return randomNumber.toFixed(point);
   }
