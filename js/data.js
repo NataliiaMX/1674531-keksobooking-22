@@ -1,4 +1,4 @@
-import {getRandom, getRandomArrayElement, makeNewRandomSubset, getRandomWithFloat} from 'util.js';
+import {getRandom, getRandomArrayElement, makeNewRandomSubset, getRandomWithFloat} from './util.js';
 
 
 //for making array of objects
@@ -6,7 +6,7 @@ import {getRandom, getRandomArrayElement, makeNewRandomSubset, getRandomWithFloa
 //templates
 const OFFER_TEMPLATE = {
   features: ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'],
-  type: ['palace', 'flat', 'house', 'bungalow'],
+  type: ['Дворец', 'Квартира', 'Бунгало', 'Дом'],
   checkin: ['12:00', '13:00', '14:00'],
   checkout: ['12:00', '13:00', '14:00'],
   photos: ['http://o0.github.io/assets/images/tokyo/hotel1.jpg',
@@ -24,11 +24,11 @@ function makeListings() {
       },
       offer: {
         title: 'Your best offer in Tokyo',
-        address: 'X:' + getRandom(1, 400) + ', ' + 'y:' + getRandom(1, 400),
+        address: 'X:' + getRandom(1, 400) + ', ' + 'Y:' + getRandom(1, 400),
         price: getRandom(1, 10000),
         type: getRandomArrayElement(OFFER_TEMPLATE.type),
-        rooms: getRandom(1, 15),
-        guests: getRandom(1, 20),
+        rooms: getRandom(2, 4),
+        guests: getRandom(2, 20),
         checkin: getRandomArrayElement(OFFER_TEMPLATE.checkin),
         checkout: getRandomArrayElement(OFFER_TEMPLATE.checkout),
         features: makeNewRandomSubset(OFFER_TEMPLATE.features),
