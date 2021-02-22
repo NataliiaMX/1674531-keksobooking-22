@@ -6,7 +6,7 @@ import {getRandom, getRandomArrayElement, makeNewRandomSubset, getRandomWithFloa
 //templates
 const OFFER_TEMPLATE = {
   features: ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'],
-  type: ['Дворец', 'Квартира', 'Бунгало', 'Дом'],
+  type: ['palace', 'flat', 'house', 'bungalow'],
   checkin: ['12:00', '13:00', '14:00'],
   checkout: ['12:00', '13:00', '14:00'],
   photos: ['http://o0.github.io/assets/images/tokyo/hotel1.jpg',
@@ -27,8 +27,8 @@ function makeListings() {
         address: 'X:' + getRandom(1, 400) + ', ' + 'Y:' + getRandom(1, 400),
         price: getRandom(1, 10000),
         type: getRandomArrayElement(OFFER_TEMPLATE.type),
-        rooms: getRandom(2, 4),
-        guests: getRandom(2, 20),
+        rooms: getRandom(1, 100),
+        guests: getRandom(1, 100),
         checkin: getRandomArrayElement(OFFER_TEMPLATE.checkin),
         checkout: getRandomArrayElement(OFFER_TEMPLATE.checkout),
         features: makeNewRandomSubset(OFFER_TEMPLATE.features),
