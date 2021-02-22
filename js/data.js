@@ -1,4 +1,4 @@
-import {getRandom, getRandomArrayElement, makeNewRandomSubset, getRandomWithFloat} from 'util.js';
+import {getRandom, getRandomArrayElement, makeNewRandomSubset, getRandomWithFloat} from './util.js';
 
 
 //for making array of objects
@@ -24,11 +24,11 @@ function makeListings() {
       },
       offer: {
         title: 'Your best offer in Tokyo',
-        address: 'X:' + getRandom(1, 400) + ', ' + 'y:' + getRandom(1, 400),
+        address: 'X:' + getRandom(1, 400) + ', ' + 'Y:' + getRandom(1, 400),
         price: getRandom(1, 10000),
         type: getRandomArrayElement(OFFER_TEMPLATE.type),
-        rooms: getRandom(1, 15),
-        guests: getRandom(1, 20),
+        rooms: getRandom(1, 100),
+        guests: getRandom(1, 100),
         checkin: getRandomArrayElement(OFFER_TEMPLATE.checkin),
         checkout: getRandomArrayElement(OFFER_TEMPLATE.checkout),
         features: makeNewRandomSubset(OFFER_TEMPLATE.features),

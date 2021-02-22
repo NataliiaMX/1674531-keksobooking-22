@@ -1,4 +1,2 @@
-import {makeListings} from 'data.js';
+import './popup.js';
 
-// eslint-disable-next-line no-unused-vars
-const listings = makeListings();
