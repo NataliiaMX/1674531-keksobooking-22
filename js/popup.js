@@ -1,7 +1,8 @@
 import {makeListings} from './data.js';
+export {createArticle};
 
 const articleTemplate = document.querySelector('#card').content.querySelector('.popup');
-const mapCanvas = document.querySelector('#map-canvas');
+
 
 const listings = makeListings();
 
@@ -22,6 +23,7 @@ function createArticle(listing){
   pushPhotos(article, listing.offer.photos);
   article.querySelector('.popup__avatar').setAttribute('src', listing.author.avatar);
   articles.push(article);
+  return article;
 }
 
 function pushPhotos(article, photos){
@@ -89,4 +91,3 @@ function pushFeature (featuresArray, article) {
 }
 
 
-mapCanvas.appendChild(articles[0]);
