@@ -40,9 +40,10 @@ mainPinMarker.addTo(map);
 
 const addressField = document.querySelector('#address');
 const latLngStart = mainPinMarker.getLatLng();
-addressField.setAttribute('value', latLngStart.lat.toFixed(5) + ', ' + latLngStart.lng.toFixed(5))
+addressField.setAttribute('value', latLngStart.lat.toFixed(5) + ', ' + latLngStart.lng.toFixed(5));
+addressField.setAttribute('readonly', 'readonly');
 
-mainPinMarker.on('moveend', (evt) => {
+mainPinMarker.on('move', (evt) => {
   const latLng = evt.target.getLatLng();
   addressField.setAttribute('value', latLng.lat.toFixed(5) + ', ' + latLng.lng.toFixed(5));
 })
@@ -52,7 +53,7 @@ const listings = makeListings();
 
 listings.forEach((listing) => {
   const {location:{x, y}} = listing;
-  
+
   const article = createArticle(listing);
 
   const articlePinIcon = L.icon ({
