@@ -33,4 +33,47 @@ function getRandomWithFloat(min, max, point) {
   }
 }
 
-export {getRandom, getRandomArrayElement, makeNewRandomSubset, getRandomWithFloat};
+//for showing error alert message
+function showAlert (message) {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = 100;
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = 0;
+  alertContainer.style.top = 0;
+  alertContainer.style.right = 0;
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'blue';
+  alertContainer.style.color = 'white';
+
+  alertContainer.textContent = message;
+  
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, 6000);
+}
+
+//for showing allert message after form data sent successfully
+
+function showSuccessAlert (message) {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = 100;
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = 0;
+  alertContainer.style.top = 0;
+  alertContainer.style.right = 0;
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'green';
+  alertContainer.style.color = 'white';
+
+  alertContainer.textContent = message;
+  
+  document.body.append(alertContainer);
+}
+
+export {getRandom, getRandomArrayElement, makeNewRandomSubset, getRandomWithFloat, showAlert, showSuccessAlert};
