@@ -47,24 +47,28 @@ function showSuccessAlert () {
 function showErrorAlert() {
   const errorAlertTemplate = document.querySelector('#error').content.querySelector('.error');
   const errorAlert = errorAlertTemplate.cloneNode(true);
-  main.appendchild(errorAlert);
+  main.appendChild(errorAlert);
   removeAlert(errorAlert);
 }
 
 function removeAlert(alert) {
-  main.addEventListener ('keydown', (evt) => {
+  document.addEventListener ('keydown', function escEvent (evt) {
     if (evt.key === ('Escape' || 'Esc')) {
       evt.preventDefault();
-      main.removeChild(alert); 
+      main.removeChild(alert);
+      document.removeEventListener('keydown', escEvent);
     }
-  })
+  });
 
-  main.addEventListener('click', () => {
+  document.addEventListener('click', function clickEvent () {
     main.removeChild(alert);
+    main.removeEventListener('click', clickEvent);
   })
 }
 
 //for showing alert message for popups
+const dissapearTime = 6000;
+
 function showAlert (message) {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = 100;
@@ -84,7 +88,7 @@ function showAlert (message) {
   
   setTimeout(() => {
     alertContainer.remove();
-  }, 6000);
+  }, dissapearTime);
 }
 
 
