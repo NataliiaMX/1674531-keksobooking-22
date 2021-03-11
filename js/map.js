@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
 
 import {makePageActive} from './inactive.js';
-import {makeListings} from './data.js';
 import {createArticle} from './popup.js';
+import {fetchListings} from './fetch.js';
+import {showAlert} from './util.js';
 
 const map = L.map('map-canvas')
   .setView({
@@ -49,29 +50,45 @@ mainPinMarker.on('move', (evt) => {
 })
 
 //добавление на карту меток объявлений
-const listings = makeListings();
 
-listings.forEach((listing) => {
-  const {location:{x, y}} = listing;
+fetchListings()
+  .then(makePins)
+  .catch(() => showAlert('Извините, данные не загрузились. Повторите запрос позже'))
 
-  const article = createArticle(listing);
+function makePins(listings) {
+  listings.forEach((listing) => {
+    const {location:{lat, lng}} = listing;
 
-  const articlePinIcon = L.icon ({
-    iconUrl: '../img/pin.svg',
-    iconSize: [52, 52],
-    iconAnchor: [26, 52],
-  });
+    const article = createArticle(listing);
+
+    const articlePinIcon = L.icon ({
+      iconUrl: '../img/pin.svg',
+      iconSize: [52, 52],
+      iconAnchor: [26, 52],
+    });
       
-  const marker = L.marker(
-    {
-      lat: x,
-      lng: y,
-    },
-    {
-      articlePinIcon,
-    },
-  );
-  marker.addTo(map).
-    bindPopup(article);
+    const marker = L.marker(
+      {
+        lat,
+        lng,
+      },
+      {
+        articlePinIcon,
+      },
+    );
+    marker.addTo(map).
+      bindPopup(article);
+  });
+}
 
-});
+//reset main pin coordinates when submitting and reseting
+
+const resetButton = document.querySelector('.ad-form__reset');
+resetButton.addEventListener('click', () => placePinBack());
+
+const submitButton = document.querySelector('.ad-form__submit');
+submitButton.addEventListener('click', () => placePinBack());
+
+function placePinBack () {
+  mainPinMarker.setLatLng({lat: 35.67620, lng: 139.65030});
+}

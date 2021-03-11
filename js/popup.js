@@ -1,16 +1,8 @@
-import {makeListings} from './data.js';
 export {createArticle};
 
 const articleTemplate = document.querySelector('#card').content.querySelector('.popup');
 
-
-const listings = makeListings();
-
-const articles = [];
-
-listings.forEach(createArticle);
-
-function createArticle(listing){
+function createArticle (listing){
   const article = articleTemplate.cloneNode(true);
   article.querySelector('.popup__title').textContent = listing.offer.title;
   article.querySelector('.popup__text--address').textContent = listing.offer.address;
@@ -22,7 +14,6 @@ function createArticle(listing){
   article.querySelector('.popup__description').textContent = listing.offer.description;
   pushPhotos(article, listing.offer.photos);
   article.querySelector('.popup__avatar').setAttribute('src', listing.author.avatar);
-  articles.push(article);
   return article;
 }
 
@@ -62,7 +53,7 @@ function makeCapacityText (rooms, guests) {
   if (roomsLastDigit === 1) {
     roomsText = 'комната';
   }
-  else if (roomsLastDigit > 2 && roomsLastDigit < 4) {
+  else if (roomsLastDigit >= 2 && roomsLastDigit < 4) {
     roomsText = 'комнаты';
   }
   else {
