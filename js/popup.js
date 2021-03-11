@@ -1,4 +1,3 @@
-// import {makeListings} from './data.js';
 export {createArticle};
 
 const articleTemplate = document.querySelector('#card').content.querySelector('.popup');
